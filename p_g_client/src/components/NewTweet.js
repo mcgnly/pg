@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,32 +7,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
-  card: {
-    minWidth: 275,
-    margin: '10px',
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-}));
-
 export default function NewTweet() {
   const classes = useStyles();
-  const [textContents, setTextContents] = useState('')
+  const [textContents, setTextContents] = useState('');
 
   return (
     <Card className={classes.card}>
@@ -46,15 +23,32 @@ export default function NewTweet() {
           margin="normal"
           variant="outlined"
           inputProps={{ maxLength: 160 }}
-          onChange={e => { setTextContents(e.target.value) }}
+          onChange={e => {
+            setTextContents(e.target.value);
+          }}
         />
       </CardContent>
       <CardActions>
-      <Typography className={classes.pos} color="textSecondary">
-        {`${textContents.length}/160`}
-      </Typography>
+        <Typography className={classes.pos} color="textSecondary">
+          {`${textContents.length}/160`}
+        </Typography>
         <Button size="small">Tweet</Button>
       </CardActions>
     </Card>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  card: {
+    minWidth: 275,
+    margin: '10px'
+  },
+  pos: {
+    marginBottom: 12
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200
+  }
+}));

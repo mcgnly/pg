@@ -3,28 +3,26 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { useParams } from "react-router-dom";
-
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2),
-  },
+    padding: theme.spacing(3, 2)
+  }
 }));
 
 export default function OtherProfile() {
-  let { id } = useParams();
-  const [data, setData] = useState({})
+  const { id } = useParams();
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    async function fetchData(){
-      const url = `${process.env.REACT_APP_PROFILE_URL}${id}/`
+    async function fetchData() {
+      const url = `${process.env.REACT_APP_PROFILE_URL}${id}/`;
       const result = await axios(url);
       setData(result.data);
     }
     fetchData();
   }, [id]);
-
 
   const classes = useStyles();
 
@@ -33,9 +31,7 @@ export default function OtherProfile() {
       <Typography variant="h5" component="h3">
         {data.author}
       </Typography>
-      <Typography component="p">
-        {data.bio}
-      </Typography>
+      <Typography component="p">{data.bio}</Typography>
     </Paper>
   );
 }
