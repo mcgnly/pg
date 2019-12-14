@@ -6,7 +6,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -22,22 +21,18 @@ export default function LinksDrawer() {
       }}
       anchor="left"
     >
-      <div className={classes.toolbar} />
-      <Link to="/">
-        <TwitterIcon />
-      </Link>
-      <Divider />
       <div>
         <div className={classes.toolbar} />
         <List>
           <ListItem button key={'Home'}>
             <Link to="/">
               <ListItemIcon>
-                <HomeIcon />
+                <TwitterIcon />
               </ListItemIcon>
               <ListItemText primary={'Home'} />
             </Link>
           </ListItem>
+          <Divider />
           <ListItem button key={'Profile'}>
             <Link to="/profile">
               <ListItemIcon>

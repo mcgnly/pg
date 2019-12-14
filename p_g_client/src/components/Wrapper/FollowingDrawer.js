@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
-export default function AppDrawer() {
+export default function FollowingDrawer() {
   const classes = useStyles();
   const [following, setFollowing] = useState([]);
 
@@ -33,15 +37,21 @@ export default function AppDrawer() {
       anchor="right"
     >
       <div className={classes.toolbar} />
-      <ul>
+      <List>
+        <ListItem key={'FollowingTitle'}>
+          <ListItemText primary={'Following'} />
+        </ListItem>
+        <Divider />
         {following.map((followItem, index) => {
           return (
-            <Link key={index} to={`/profile/${followItem.profileId}`}>
-              <li key={index}>{followItem.username}</li>
-            </Link>
+            <ListItem button key={index}>
+              <Link key={index} to={`/profile/${followItem.profileId}`}>
+                <ListItemText key={index} primary={followItem.username} />
+              </Link>
+            </ListItem>
           );
         })}
-      </ul>
+      </List>
     </Drawer>
   );
 }
@@ -50,13 +60,11 @@ const drawerWidth = 140;
 
 const useStyles = makeStyles(theme => ({
   drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0
-    }
+    width: drawerWidth,
+    flexShrink: 0
   },
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth
-  }
+  },
+  toolbar: theme.mixins.toolbar
 }));

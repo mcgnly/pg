@@ -3,20 +3,22 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export default function Profile() {
-  const classes = useStyles();
-  const [data, setData] = useState({ bio: 'nothing provided' });
+export default function OtherProfile() {
+  const { id } = useParams();
+  const [data, setData] = useState({});
 
   useEffect(() => {
     async function fetchData() {
-      const url = process.env.REACT_APP_MY_PROFILE_URL;
+      const url = `${process.env.REACT_APP_PROFILE_URL}${id}/`;
       const result = await axios(url);
-      setData(result.data[0]);
+      setData(result.data);
     }
     fetchData();
-  }, []);
+  }, [id]);
+
+  const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
@@ -24,7 +26,6 @@ export default function Profile() {
         {data.author}
       </Typography>
       <Typography component="p">{data.bio}</Typography>
-      <Link to="/edit-profile">Edit profile</Link>
     </Paper>
   );
 }
@@ -32,6 +33,6 @@ export default function Profile() {
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
-    marginTop: '100px'
+    marginTop: '50px'
   }
 }));

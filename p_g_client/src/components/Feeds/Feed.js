@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import FollowingItem from './FollowingItem';
+import Tweet from '../Tweet/Tweet';
+import NewTweet from '../Tweet/NewTweet';
 
-export default function Following() {
+export default function Feed() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const result = await axios(process.env.REACT_APP_TWEETS_URL);
-      setData(result.data.results);
+      setData(result.data);
     }
     fetchData();
   }, []);
 
   return (
     <div>
-      {data.map((item, index) => (
-        <FollowingItem key={index} text={item.text} username={item.username} url={item.url} />
+      <NewTweet />
+      {data.map(item => (
+        <Tweet text={item.text} author={item.author} created={item.created} id={item.id} />
       ))}
     </div>
   );

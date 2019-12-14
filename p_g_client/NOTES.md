@@ -10,6 +10,6 @@ This project was developed for the purposes of providing a sample of work in a s
 - props validation
 - lots better design and styling
 
---------------
-
+still working on... 
 - edit profile, submit tweet
+- react code knowing if user is authenticated to switch login/logout prompts and disable link to my-profile if not authenticated

@@ -41,7 +41,8 @@ export default function NewTweet() {
 const useStyles = makeStyles(theme => ({
   card: {
     minWidth: 275,
-    margin: '10px'
+    margin: '10px',
+    marginTop: '50px'
   },
   pos: {
     marginBottom: 12
@@ -49,6 +50,7 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200
+    minWidth: 200,
+    width: '97%'
   }
 }));
